@@ -1,3 +1,3 @@
 // index.js
 
-console.log("hello from node.js");
+require("./app/index");
