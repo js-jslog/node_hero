@@ -12,5 +12,8 @@
     "url": "node_hero"
   },
   "author": "js-jslog",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
 }
