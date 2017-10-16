@@ -1,19 +1,24 @@
 "use strict"
 
-const http = require("http");
-const port = 3000;
+const path = require("path");
+const express = require("express");
+const exphbs = require("express-handlebars");
 
-const requestHandler = (request, response) => {
-    console.log(request.url);
-    response.end("Hello Node.js Server!");
-};
+const app = express();
 
-const server = http.createServer(requestHandler);
+app.engine(".hbs", exphbs({
+    defaultLayout: "main",
+    extname: ".hbs",
+    layoutsDir: path.join(__dirname, "../views/layouts"),
+}));
 
-server.listen(port, (err) => {
-    if (err) {
-        return console.log("something bad happened", err);
-    }
+app.set("view engine", ".hbs");
+app.set("views", path.join(__dirname, "../views"));
 
-    console.log(`server is listening on ${port}`);
+app.get("/", (request, response) => {
+    response.render("home", {
+        name: "John",
+    })
 });
+
+app.listen(3000);
